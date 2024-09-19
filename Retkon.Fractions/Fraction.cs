@@ -2,10 +2,14 @@
 
 public readonly struct Fraction
 {
+    public readonly static Fraction Zero = new(0, 1);
+    public readonly static Fraction One = new(1, 1);
+    public readonly static Fraction MinusOne = new(-1, 1);
+
     public readonly int Numerator;
     public readonly int Denominator;
 
-    public Fraction(int numerator, int denominator)
+    public Fraction(int numerator, int denominator, bool reduce = true)
     {
         switch (denominator)
         {
@@ -20,12 +24,27 @@ public readonly struct Fraction
         if (numerator == 0)
             denominator = 1;
 
-        this.Numerator = numerator;
-        this.Denominator = denominator;
-    }
+        if (reduce)
+        {
+            var largestCommon = 1;
+            for (int i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
+            {
+                if (numerator % i == 0 && denominator % i == 0)
+                {
+                    largestCommon = i;
+                    break;
+                }
+            }
 
-    public readonly static Fraction Zero = new(0, 1);
-    public readonly static Fraction One = new(1, 1);
+            this.Numerator = numerator / largestCommon;
+            this.Denominator = denominator / largestCommon;
+        }
+        else
+        {
+            this.Numerator = numerator;
+            this.Denominator = denominator;
+        }
+    }
 
     public static Fraction operator +(Fraction a, Fraction b)
     {
@@ -40,11 +59,11 @@ public readonly struct Fraction
 
     public static Fraction operator -(Fraction a, Fraction b)
     {
-        if (a.Numerator == 0)
-            return b * -1;
-
         if (b.Numerator == 0)
             return a;
+
+        if (a.Numerator == 0)
+            return b * -1;
 
         return new Fraction(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
@@ -62,23 +81,37 @@ public readonly struct Fraction
         return new Fraction(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
     }
 
-    public static Fraction operator +(Fraction a, int b)
+    public static Fraction operator %(Fraction a, Fraction b)
     {
-        return new Fraction(a.Numerator + b * a.Denominator, a.Denominator);
+        return new Fraction((a.Numerator * b.Denominator) % (b.Numerator * a.Denominator), a.Denominator * b.Denominator);
     }
 
-    public static Fraction operator -(Fraction a, int b)
+    public Fraction Reduce()
     {
-        return new Fraction(a.Numerator - b * a.Denominator, a.Denominator);
+        var largestCommon = 1;
+        for (int i = (int)Math.Sqrt(Math.Min(Math.Abs(this.Numerator), Math.Abs(this.Denominator))) - 1; i > 0; i--)
+        {
+            if (this.Numerator % i == 0 && this.Denominator % i == 0)
+            {
+                largestCommon = i;
+                break;
+            }
+        }
+
+        if (largestCommon > 1)
+            return new Fraction(this.Numerator / largestCommon, this.Denominator / largestCommon);
+        else
+            return this;
     }
 
-    public static Fraction operator *(Fraction a, int b)
+    public override string ToString()
     {
-        return new Fraction(a.Numerator * b, a.Denominator);
+        return $"{this.Numerator} / {this.Denominator}";
     }
 
-    public static Fraction operator /(Fraction a, int b)
+    public static implicit operator Fraction(int value)
     {
-        return new Fraction(a.Numerator, a.Denominator * b);
+        return new Fraction(value, 1);
     }
+
 }
