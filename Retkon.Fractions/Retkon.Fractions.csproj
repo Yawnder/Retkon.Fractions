@@ -4,6 +4,25 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Title>Retkon's Fractions</Title>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Retkon,Fraction,Yawnder</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Authors>Yawnder</Authors>
+    <Company>Retkon</Company>
+    <Version>0.8-beta</Version>
+    <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
