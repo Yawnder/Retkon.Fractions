@@ -6,16 +6,19 @@
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Title>Retkon's Fractions</Title>
-    <Description>A small, non-optimised, library to do basic operations with fractions.</Description>
+    <Title>Retkon's Fractions, including Units</Title>
+    <Description>A small, non-optimised, library to do basic operations with fractions, with units.</Description>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>Retkon,Fraction</PackageTags>
+    <PackageTags>Retkon,Fraction,Units</PackageTags>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Yawnder</Authors>
     <Company>Retkon</Company>
     <Version>0.8.5-beta</Version>
-    <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>
-  </PropertyGroup>
+    <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Retkon.Fractions\Retkon.Fractions.csproj" />
+  </ItemGroup>
 
 </Project>
