@@ -18,7 +18,7 @@
     <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>  </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Retkon.Fractions\Retkon.Fractions.csproj" />
+    <ProjectReference Include="..\Retkon.Fractions.Core\Retkon.Fractions.Core.csproj" />
   </ItemGroup>
 
 </Project>
