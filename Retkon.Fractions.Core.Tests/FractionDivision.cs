@@ -1,4 +1,4 @@
-namespace Retkon.Fractions.Tests;
+namespace Retkon.Fractions.Core.Tests;
 
 [TestClass]
 public class FractionDivision

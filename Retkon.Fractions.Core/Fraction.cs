@@ -1,4 +1,6 @@
-﻿namespace Retkon.Fractions;
+﻿#pragma warning disable IDE0130 // Namespace does not match folder structure
+namespace Retkon.Fractions;
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 
 public readonly struct Fraction
 {
@@ -6,10 +8,10 @@ public readonly struct Fraction
     public readonly static Fraction One = new(1, 1);
     public readonly static Fraction MinusOne = new(-1, 1);
 
-    public readonly int Numerator;
-    public readonly int Denominator;
+    public readonly long Numerator;
+    public readonly long Denominator;
 
-    public Fraction(int numerator, int denominator, bool reduce = true)
+    public Fraction(long numerator, long denominator, bool reduce = true)
     {
         switch (denominator)
         {
@@ -38,8 +40,8 @@ public readonly struct Fraction
             }
             else
             {
-                var largestCommon = 1;
-                for (int i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
+                var largestCommon = 1L;
+                for (long i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
                 {
                     if (numerator % i == 0 && denominator % i == 0)
                     {
@@ -115,8 +117,8 @@ public readonly struct Fraction
         }
         else
         {
-            var largestCommon = 1;
-            for (int i = (int)Math.Sqrt(Math.Min(Math.Abs(this.Numerator), Math.Abs(this.Denominator))) - 1; i > 0; i--)
+            var largestCommon = 1L;
+            for (long i = (long)Math.Sqrt(Math.Min(Math.Abs(this.Numerator), Math.Abs(this.Denominator))) - 1; i > 0; i--)
             {
                 if (this.Numerator % i == 0 && this.Denominator % i == 0)
                 {
@@ -137,9 +139,14 @@ public readonly struct Fraction
         return $"{this.Numerator} / {this.Denominator}";
     }
 
-    public static implicit operator Fraction(int value)
+    public static implicit operator Fraction(long value)
     {
         return new Fraction(value, 1);
+    }
+
+    public static implicit operator float(Fraction value)
+    {
+        return (float)value.Numerator / (float)value.Denominator;
     }
 
 }

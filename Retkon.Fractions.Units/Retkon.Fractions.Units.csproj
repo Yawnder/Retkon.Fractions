@@ -14,8 +14,9 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Yawnder</Authors>
     <Company>Retkon</Company>
-    <Version>0.8.5-beta</Version>
-    <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>  </PropertyGroup>
+    <Version>0.9-beta</Version>
+    <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Retkon.Fractions.Core\Retkon.Fractions.Core.csproj" />

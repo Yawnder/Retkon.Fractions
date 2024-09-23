@@ -21,8 +21,8 @@ public class FractionUnit<T> where T : notnull
     private readonly Fraction _fraction;
     private readonly Dictionary<T, short> _units;
 
-    public int Numerator => this._fraction.Numerator;
-    public int Denominator => this._fraction.Denominator;
+    public long Numerator => this._fraction.Numerator;
+    public long Denominator => this._fraction.Denominator;
     public IReadOnlyDictionary<T, short> Units => this._units;
 
     public FractionUnit(Fraction fraction, IEnumerable<T>? numeratorUnits = null, IEnumerable<T>? denominatorUnits = null)
@@ -154,6 +154,16 @@ public class FractionUnit<T> where T : notnull
     public static implicit operator FractionUnit<T>(Fraction fraction)
     {
         return new FractionUnit<T>(fraction, []);
+    }
+
+    public static implicit operator FractionUnit<T>(long value)
+    {
+        return new FractionUnit<T>(value, []);
+    }
+
+    public static implicit operator float(FractionUnit<T> value)
+    {
+        return (float)value.Numerator / (float)value.Denominator;
     }
 
 }

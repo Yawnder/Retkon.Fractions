@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Title>Retkon's Fractions Core</Title>
+    <Title>Retkon's Fractions Tools</Title>
     <Description>A small, non-optimised, library to do basic operations with fractions.</Description>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Retkon,Fraction</PackageTags>
@@ -17,5 +17,10 @@
     <Version>0.9-beta</Version>
     <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Retkon.Fractions.Core\Retkon.Fractions.Core.csproj" />
+    <ProjectReference Include="..\Retkon.Fractions.Units\Retkon.Fractions.Units.csproj" />
+  </ItemGroup>
 
 </Project>
