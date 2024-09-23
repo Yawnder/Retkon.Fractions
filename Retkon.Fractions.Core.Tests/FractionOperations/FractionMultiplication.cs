@@ -1,370 +1,355 @@
-namespace Retkon.Fractions.Core.Tests;
+namespace Retkon.Fractions.Core.Tests.FractionOperations;
 
 [TestClass]
-public class FractionDivision
+public class FractionMultiplication
 {
     [TestMethod]
-    public void Fraction_Division_ZeroDividedByZero()
+    public void Fraction_Multiplication_ZeroMultipliedByZero()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = Fraction.Zero;
 
         // Act
-        try
-        {
-            var result = a / b;
-            // Assert
-            Assert.Fail("Shouldn't reach here.");
-        }
-        catch (DivideByZeroException) { }
-    }
-
-    [TestMethod]
-    public void Fraction_Division_ZeroDividedByOne()
-    {
-        // Arrange
-        var a = Fraction.Zero;
-        var b = new Fraction(1, 1);
-
-        // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_ZeroDividedByMore()
+    public void Fraction_Multiplication_ZeroMultipliedByOne()
+    {
+        // Arrange
+        var a = Fraction.Zero;
+        var b = new Fraction(1, 1);
+
+        // Act
+        var result = a * b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
+    }
+
+    [TestMethod]
+    public void Fraction_Multiplication_ZeroMultipliedByMore()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = new Fraction(24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_ZeroDividedByMinusOne()
+    public void Fraction_Multiplication_ZeroMultipliedByMinusOne()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_ZeroDividedByMinusMore()
+    public void Fraction_Multiplication_ZeroMultipliedByMinusMore()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_OneDividedByZero()
+    public void Fraction_Multiplication_OneMultipliedByZero()
     {
         // Arrange
         var a = new Fraction(1, 1);
         var b = Fraction.Zero;
 
         // Act
-        try
-        {
-            var result = a / b;
-            // Assert
-            Assert.Fail("Shouldn't reach here.");
-        }
-        catch (DivideByZeroException) { }
+        var result = a * b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_OneDividedByOne()
+    public void Fraction_Multiplication_OneMultipliedByOne()
     {
         // Arrange
         var a = new Fraction(1, 1);
         var b = new Fraction(1, 1);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.One, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_OneDividedByMore()
+    public void Fraction_Multiplication_OneMultipliedByMore()
     {
         // Arrange
         var a = new Fraction(1, 1);
         var b = new Fraction(24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(187, 24), result);
+        Assert.AreEqual(new Fraction(24, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_OneDividedByMinusOne()
+    public void Fraction_Multiplication_OneMultipliedByMinusOne()
     {
         // Arrange
         var a = new Fraction(1, 1);
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.MinusOne, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_OneDividedByMinusMore()
+    public void Fraction_Multiplication_OneMultipliedByMinusMore()
     {
         // Arrange
         var a = new Fraction(1, 1);
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(-187, 24), result);
+        Assert.AreEqual(new Fraction(-24, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusOneDividedByZero()
+    public void Fraction_Multiplication_MinusOneMultipliedByZero()
     {
         // Arrange
         var a = Fraction.MinusOne;
         var b = Fraction.Zero;
 
         // Act
-        try
-        {
-            var result = a / b;
-            // Assert
-            Assert.Fail("Shouldn't reach here.");
-        }
-        catch (DivideByZeroException) { }
+        var result = a * b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusOneDividedByOne()
+    public void Fraction_Multiplication_MinusOneMultipliedByOne()
     {
         // Arrange
         var a = Fraction.MinusOne;
         var b = new Fraction(1, 1);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.MinusOne, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusOneDividedByMore()
+    public void Fraction_Multiplication_MinusOneMultipliedByMore()
     {
         // Arrange
         var a = Fraction.MinusOne;
         var b = new Fraction(24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(-187, 24), result);
+        Assert.AreEqual(new Fraction(-24, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusOneDividedByMinusOne()
+    public void Fraction_Multiplication_MinusOneMultipliedByMinusOne()
     {
         // Arrange
         var a = Fraction.MinusOne;
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(Fraction.One, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusOneDividedByMinusMore()
+    public void Fraction_Multiplication_MinusOneMultipliedByMinusMore()
     {
         // Arrange
         var a = Fraction.MinusOne;
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(187, 24), result);
+        Assert.AreEqual(new Fraction(24, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MoreDividedByZero()
+    public void Fraction_Multiplication_MoreMultipliedByZero()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = Fraction.Zero;
 
         // Act
-        try
-        {
-            var result = a / b;
-            // Assert
-            Assert.Fail("Shouldn't reach here.");
-        }
-        catch (DivideByZeroException) { }
+        var result = a * b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MoreDividedByOne()
+    public void Fraction_Multiplication_MoreMultipliedByOne()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = new Fraction(1, 1);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(new Fraction(12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MoreDividedByMore()
+    public void Fraction_Multiplication_MoreMultipliedByMore()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = new Fraction(24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(187, 358), result);
+        Assert.AreEqual(new Fraction(288, 33473), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MoreDividedByMinusOne()
+    public void Fraction_Multiplication_MoreMultipliedByMinusOne()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(new Fraction(-12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MoreDividedByMinusMore()
+    public void Fraction_Multiplication_MoreMultipliedByMinusMore()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(-187, 358), result);
+        Assert.AreEqual(new Fraction(-288, 33473), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusMoreDividedByZero()
+    public void Fraction_Multiplication_MinusMoreMultipliedByZero()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = Fraction.Zero;
 
         // Act
-        try
-        {
-            var result = a / b;
-            // Assert
-            Assert.Fail("Shouldn't reach here.");
-        }
-        catch (DivideByZeroException) { }
+        var result = a * b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusMoreDividedByOne()
+    public void Fraction_Multiplication_MinusMoreMultipliedByOne()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = new Fraction(1, 1);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(new Fraction(-12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusMoreDividedByMore()
+    public void Fraction_Multiplication_MinusMoreMultipliedByMore()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = new Fraction(24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(-187, 358), result);
+        Assert.AreEqual(new Fraction(-288, 33473), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusMoreDividedByMinusOne()
+    public void Fraction_Multiplication_MinusMoreMultipliedByMinusOne()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
         Assert.AreEqual(new Fraction(12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Division_MinusMoreDividedByMinusMore()
+    public void Fraction_Multiplication_MinusMoreMultipliedByMinusMore()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a / b;
+        var result = a * b;
 
         // Assert
-        Assert.AreEqual(new Fraction(187, 358), result);
+        Assert.AreEqual(new Fraction(288, 33473), result);
     }
 }

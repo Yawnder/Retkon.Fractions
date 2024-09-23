@@ -1,355 +1,355 @@
-namespace Retkon.Fractions.Tests;
+namespace Retkon.Fractions.Core.Tests.FractionOperations;
 
 [TestClass]
-public class FractionSubstraction
+public class FractionAddition
 {
     [TestMethod]
-    public void Fraction_Substraction_ZeroMinusZero()
+    public void Fraction_Addition_ZeroPlusZero()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = Fraction.Zero;
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_ZeroMinusOne()
+    public void Fraction_Addition_ZeroPlusOne()
     {
         // Arrange
         var a = Fraction.Zero;
-        var b = Fraction.One;
+        var b = new Fraction(1, 1);
 
         // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(Fraction.MinusOne, result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_ZeroMinusMore()
-    {
-        // Arrange
-        var a = Fraction.Zero;
-        var b = new Fraction(24, 187);
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-24, 187), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_ZeroMinusMinusOne()
-    {
-        // Arrange
-        var a = Fraction.Zero;
-        var b = Fraction.MinusOne;
-
-        // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(Fraction.One, result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_ZeroMinusMinusMore()
+    public void Fraction_Addition_ZeroPlusMore()
+    {
+        // Arrange
+        var a = Fraction.Zero;
+        var b = new Fraction(24, 187);
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(b, result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_ZeroPlusMinusOne()
+    {
+        // Arrange
+        var a = Fraction.Zero;
+        var b = Fraction.MinusOne;
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(b, result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_ZeroPlusMinusMore()
     {
         // Arrange
         var a = Fraction.Zero;
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
-        Assert.AreEqual(new Fraction(24, 187), result);
+        Assert.AreEqual(b, result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_OneMinusZero()
+    public void Fraction_Addition_OnePlusZero()
     {
         // Arrange
-        var a = Fraction.One;
+        var a = new Fraction(1, 1);
         var b = Fraction.Zero;
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(Fraction.One, result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_OneMinusOne()
+    public void Fraction_Addition_OnePlusOne()
     {
         // Arrange
-        var a = Fraction.One;
-        var b = Fraction.One;
+        var a = new Fraction(1, 1);
+        var b = new Fraction(1, 1);
 
         // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(Fraction.Zero, result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_OneMinusMore()
-    {
-        // Arrange
-        var a = Fraction.One;
-        var b = new Fraction(24, 187);
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(163, 187), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_OneMinusMinusOne()
-    {
-        // Arrange
-        var a = Fraction.One;
-        var b = Fraction.MinusOne;
-
-        // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(2, 1), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_OneMinusMinusMore()
+    public void Fraction_Addition_OnePlusMore()
     {
         // Arrange
-        var a = Fraction.One;
-        var b = new Fraction(-24, 187);
+        var a = new Fraction(1, 1);
+        var b = new Fraction(24, 187);
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(211, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MinusOneMinusZero()
+    public void Fraction_Addition_OnePlusMinusOne()
     {
         // Arrange
-        var a = Fraction.MinusOne;
-        var b = Fraction.Zero;
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(Fraction.MinusOne, result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MinusOneMinusOne()
-    {
-        // Arrange
-        var a = Fraction.MinusOne;
-        var b = Fraction.One;
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-2, 1), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MinusOneMinusMore()
-    {
-        // Arrange
-        var a = Fraction.MinusOne;
-        var b = new Fraction(24, 187);
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-211, 187), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MinusOneMinusMinusOne()
-    {
-        // Arrange
-        var a = Fraction.MinusOne;
+        var a = new Fraction(1, 1);
         var b = Fraction.MinusOne;
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(Fraction.Zero, result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MinusOneMinusMinusMore()
+    public void Fraction_Addition_OnePlusMinusMore()
     {
         // Arrange
-        var a = Fraction.MinusOne;
+        var a = new Fraction(1, 1);
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a - b;
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(163, 187), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusOnePlusZero()
+    {
+        // Arrange
+        var a = Fraction.MinusOne;
+        var b = Fraction.Zero;
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(Fraction.MinusOne, result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusOnePlusOne()
+    {
+        // Arrange
+        var a = Fraction.MinusOne;
+        var b = new Fraction(1, 1);
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(Fraction.Zero, result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusOnePlusMore()
+    {
+        // Arrange
+        var a = Fraction.MinusOne;
+        var b = new Fraction(24, 187);
+
+        // Act
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(-163, 187), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MoreMinusZero()
+    public void Fraction_Addition_MinusOnePlusMinusOne()
+    {
+        // Arrange
+        var a = Fraction.MinusOne;
+        var b = Fraction.MinusOne;
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(-2, 1), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusOnePlusMinusMore()
+    {
+        // Arrange
+        var a = Fraction.MinusOne;
+        var b = new Fraction(-24, 187);
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(-211, 187), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MorePlusZero()
     {
         // Arrange
         var a = new Fraction(12, 179);
         var b = Fraction.Zero;
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MoreMinusOne()
+    public void Fraction_Addition_MorePlusOne()
     {
         // Arrange
         var a = new Fraction(12, 179);
-        var b = Fraction.One;
+        var b = new Fraction(1, 1);
 
         // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-167, 179), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MoreMinusMore()
-    {
-        // Arrange
-        var a = new Fraction(12, 179);
-        var b = new Fraction(24, 187);
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-2052, 33473), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MoreMinusMinusOne()
-    {
-        // Arrange
-        var a = new Fraction(12, 179);
-        var b = Fraction.MinusOne;
-
-        // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(191, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MoreMinusMinusMore()
+    public void Fraction_Addition_MorePlusMore()
     {
         // Arrange
         var a = new Fraction(12, 179);
-        var b = new Fraction(-24, 187);
+        var b = new Fraction(24, 187);
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(6540, 33473), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MinusMoreMinusZero()
+    public void Fraction_Addition_MorePlusMinusOne()
+    {
+        // Arrange
+        var a = new Fraction(12, 179);
+        var b = Fraction.MinusOne;
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(-167, 179), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MorePlusMinusMore()
+    {
+        // Arrange
+        var a = new Fraction(12, 179);
+        var b = new Fraction(-24, 187);
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(-2052, 33473), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusMorePlusZero()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = Fraction.Zero;
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(-12, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MinusMoreMinusOne()
+    public void Fraction_Addition_MinusMorePlusOne()
     {
         // Arrange
         var a = new Fraction(-12, 179);
-        var b = Fraction.One;
+        var b = new Fraction(1, 1);
 
         // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-191, 179), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MinusMoreMinusMore()
-    {
-        // Arrange
-        var a = new Fraction(-12, 179);
-        var b = new Fraction(24, 187);
-
-        // Act
-        var result = a - b;
-
-        // Assert
-        Assert.AreEqual(new Fraction(-6540, 33473), result);
-    }
-
-    [TestMethod]
-    public void Fraction_Substraction_MinusMoreMinusMinusOne()
-    {
-        // Arrange
-        var a = new Fraction(-12, 179);
-        var b = Fraction.MinusOne;
-
-        // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
         Assert.AreEqual(new Fraction(167, 179), result);
     }
 
     [TestMethod]
-    public void Fraction_Substraction_MinusMoreMinusMinusMore()
+    public void Fraction_Addition_MinusMorePlusMore()
+    {
+        // Arrange
+        var a = new Fraction(-12, 179);
+        var b = new Fraction(24, 187);
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(2052, 33473), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusMorePlusMinusOne()
+    {
+        // Arrange
+        var a = new Fraction(-12, 179);
+        var b = Fraction.MinusOne;
+
+        // Act
+        var result = a + b;
+
+        // Assert
+        Assert.AreEqual(new Fraction(-191, 179), result);
+    }
+
+    [TestMethod]
+    public void Fraction_Addition_MinusMorePlusMinusMore()
     {
         // Arrange
         var a = new Fraction(-12, 179);
         var b = new Fraction(-24, 187);
 
         // Act
-        var result = a - b;
+        var result = a + b;
 
         // Assert
-        Assert.AreEqual(new Fraction(2052, 33473), result);
+        Assert.AreEqual(new Fraction(-6540, 33473), result);
     }
 }

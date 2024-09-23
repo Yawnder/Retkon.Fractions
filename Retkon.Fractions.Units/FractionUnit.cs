@@ -45,6 +45,17 @@ public class FractionUnit<T> where T : notnull
         this._units = new Dictionary<T, short>(units);
     }
 
+    public static FractionUnit<T> operator +(FractionUnit<T> a)
+    {
+
+        return a;
+    }
+
+    public static FractionUnit<T> operator -(FractionUnit<T> a)
+    {
+        return new FractionUnit<T>(-a._fraction, a._units);
+    }
+
     public static FractionUnit<T> operator +(FractionUnit<T> a, FractionUnit<T> b)
     {
         ValidateCompatibleUnits(a, b);

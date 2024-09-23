@@ -61,6 +61,16 @@ public readonly struct Fraction
         }
     }
 
+    public static Fraction operator +(Fraction a)
+    {
+        return a;
+    }
+
+    public static Fraction operator -(Fraction a)
+    {
+        return new Fraction(-a.Numerator, a.Denominator);
+    }
+
     public static Fraction operator +(Fraction a, Fraction b)
     {
         if (a.Numerator == 0)
@@ -85,7 +95,7 @@ public readonly struct Fraction
 
     public static Fraction operator *(Fraction a, Fraction b)
     {
-        if (a.Numerator == 0 || a.Numerator == 0)
+        if (a.Numerator == 0 || b.Numerator == 0)
             return Zero;
 
         return new Fraction(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
