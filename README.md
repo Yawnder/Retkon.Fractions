@@ -31,7 +31,14 @@ Console.WriteLine(result);	// { 578 / 176, Units: Km }
 ### Supported operations and features
 * Addition / Substraction: Require the same units
 * Multiplication / Division: Handle and simplifies units.
-* Generic Unit handling (`new FractionUnit<MyUnit>(..., new Dictionary<MyUnit, short>(...))`), with a shorthand on string.
+* Generic Unit handling (`new FractionUnit<MyUnit>(..., new Dictionary<MyUnit, short>(...))`).
+
+Note: As a suggestion, in many cases the Units would simply be a `string`, so this could be added to the csproj:
+```xml
+  <ItemGroup>
+    <Using Include="Retkon.Fractions.Units.FractionUnit&lt;string&gt;" Alias="FractionUnit" />
+  </ItemGroup>
+```
 
 ## Retkon.Fractions.Tools
 Adds utilities (well, just one for now...) to using the Fraction and FractionUnit classes.

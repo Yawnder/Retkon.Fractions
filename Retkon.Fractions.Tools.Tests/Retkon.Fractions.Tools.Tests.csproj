@@ -24,4 +24,8 @@
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Retkon.Fractions.Units.FractionUnit&lt;string&gt;" Alias="FractionUnit" />
+  </ItemGroup>
+  
 </Project>

@@ -1,20 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Retkon.Fractions.Units;
-
-public class FractionUnit : FractionUnit<string>
-{
-    public FractionUnit(Fraction fraction, IEnumerable<string>? numeratorUnits = null, IEnumerable<string>? denominatorUnits = null)
-        : base(fraction, numeratorUnits, denominatorUnits)
-    {
-    }
-
-    public FractionUnit(Fraction fraction, Dictionary<string, short> units)
-        : base(fraction, units)
-    {
-    }
-}
-
 public class FractionUnit<T> where T : notnull
 {
 
@@ -45,9 +31,62 @@ public class FractionUnit<T> where T : notnull
         this._units = new Dictionary<T, short>(units);
     }
 
+    private static void ValidateCompatibleUnits(FractionUnit<T> a, FractionUnit<T> b)
+    {
+        if (a._units.Count > 0 || b._units.Count > 0)
+        {
+            if (a._units.Count != b._units.Count)
+                throw new InvalidOperationException("Different units.");
+
+            foreach (var aUnitKvp in a._units)
+            {
+                if (!b._units.TryGetValue(aUnitKvp.Key, out var bUnitValue) || aUnitKvp.Value != bUnitValue)
+                    throw new InvalidOperationException("Different units.");
+            }
+        }
+    }
+
+    private static Dictionary<T, short> SumUnits(Dictionary<T, short> aUnits, Dictionary<T, short> bUnits, bool isAdd)
+    {
+        var allUnits = aUnits.Keys.Union(bUnits.Keys);
+        var units = new Dictionary<T, short>();
+        var secondMultiplier = isAdd ? 1 : -1;
+
+        foreach (var unit in allUnits)
+        {
+            aUnits.TryGetValue(unit, out var aUnitValue);
+            bUnits.TryGetValue(unit, out var bUnitValue);
+            var unitValue = aUnitValue + bUnitValue * secondMultiplier;
+
+            if (unitValue != 0)
+            {
+                units[unit] = (short)unitValue;
+            }
+        }
+
+        return units;
+    }
+
+    public override int GetHashCode()
+    {
+        return this._fraction.GetHashCode() * 13 + this._units.GetHashCode() * 23;
+    }
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+    {
+        if (obj is not FractionUnit<T> that)
+            return false;
+
+        return this._fraction.Equals(that._fraction) && this._units.Count == that._units.Count && !this._units.Any(entry => !that._units.TryGetValue(entry.Key, out var thatValue) || thatValue != entry.Value);
+    }
+
+    public override string ToString()
+    {
+        return $"{{{this.Numerator} / {this.Denominator}, Units: {string.Join(", ", this.Units.Select(e => $"{e.Key} {e.Value}"))}}}";
+    }
+
     public static FractionUnit<T> operator +(FractionUnit<T> a)
     {
-
         return a;
     }
 
@@ -106,60 +145,6 @@ public class FractionUnit<T> where T : notnull
     public static bool operator !=(FractionUnit<T> a, FractionUnit<T> b)
     {
         return !a.Equals(b);
-    }
-
-    private static void ValidateCompatibleUnits(FractionUnit<T> a, FractionUnit<T> b)
-    {
-        if (a._units.Count > 0 || b._units.Count > 0)
-        {
-            if (a._units.Count != b._units.Count)
-                throw new InvalidOperationException("Different units.");
-
-            foreach (var aUnitKvp in a._units)
-            {
-                if (!b._units.TryGetValue(aUnitKvp.Key, out var bUnitValue) || aUnitKvp.Value != bUnitValue)
-                    throw new InvalidOperationException("Different units.");
-            }
-        }
-    }
-
-    private static Dictionary<T, short> SumUnits(Dictionary<T, short> aUnits, Dictionary<T, short> bUnits, bool isAdd)
-    {
-        var allUnits = aUnits.Keys.Union(bUnits.Keys);
-        var units = new Dictionary<T, short>();
-        var secondMultiplier = isAdd ? 1 : -1;
-
-        foreach (var unit in allUnits)
-        {
-            aUnits.TryGetValue(unit, out var aUnitValue);
-            bUnits.TryGetValue(unit, out var bUnitValue);
-            var unitValue = aUnitValue + bUnitValue * secondMultiplier;
-
-            if (unitValue != 0)
-            {
-                units[unit] = (short)unitValue;
-            }
-        }
-
-        return units;
-    }
-
-    public override int GetHashCode()
-    {
-        return this._fraction.GetHashCode() * 13 + this._units.GetHashCode() * 23;
-    }
-
-    public override bool Equals([NotNullWhen(true)] object? obj)
-    {
-        if (obj is not FractionUnit<T> that)
-            return false;
-
-        return this._fraction.Equals(that._fraction) && this._units.Count == that._units.Count && !this._units.Any(entry => !that._units.TryGetValue(entry.Key, out var thatValue) || thatValue != entry.Value);
-    }
-
-    public override string ToString()
-    {
-        return $"{{{this.Numerator} / {this.Denominator}, Units: {string.Join(", ", this.Units.Select(e => $"{e.Key} {e.Value}"))}}}";
     }
 
     public static implicit operator FractionUnit<T>(Fraction fraction)
