@@ -1,5 +1,3 @@
-using System.Reflection.Metadata;
-
 namespace Retkon.Fractions.Tools.Tests;
 
 [TestClass]

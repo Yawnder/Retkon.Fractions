@@ -41,14 +41,26 @@ Note: As a suggestion, in many cases the Units would simply be a `string`, so th
 ```
 
 ## Retkon.Fractions.Tools
-Adds utilities (well, just one for now...) to using the Fraction and FractionUnit classes.
+Adds utilities to using the Fraction and FractionUnit classes.
 
-### Usage
+### FractionUtility
+#### Create
+Creates a fraction approximation of a float.
 ```cs
 var fraction = FractionUtility.Create(0.1484354748);
 Console.WriteLine(fraction);	// { 742177 / 5000000 }
 ```
+#### SameBase
+Finds the Least Common Denominator (LCD) of all fractions, and returns them all with that Denominator.
+```cs
+var result = FractionUtility.SameBase(new Fraction(2, 36), new Fraction(1, 18), new Fraction(-9, 15));
+// Returns:
+/// 5/90, 5/90, -54/90
+```
 
+### FractionUnitUtility
+#### Create
+Creates a fraction approximation of a float, and applies the unit in one step.
 ```cs
 var fraction = FractionUnitFactory.Create(0.1484354748, new Dictionary<string, short> { { "s", 1 } });
 Console.WriteLine(fraction);	// { 742177 / 5000000, Units: s }

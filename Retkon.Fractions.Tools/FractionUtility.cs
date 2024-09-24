@@ -48,5 +48,22 @@ public static class FractionUtility
         return new Fraction((long)value, denominator);
     }
 
+    public static List<Fraction> SameBase(params Fraction[] fractions)
+    {
+        var result = fractions.Select(e => new Fraction(e.Numerator, e.Denominator)).ToList();
+        var lcdParts = result.Select(e => e.Denominator).Distinct().ToList();
+
+        if (lcdParts.Count < 2)
+            return result;
+
+        result = result
+            .Select(e =>
+            {
+                var multiple = lcdParts.Where(v => v != e.Denominator).Aggregate(1L, (v0, v) => v0 * v);
+                return new Fraction(e.Numerator * multiple, e.Denominator * multiple, false);
+            }).ToList();
+
+        return result;
+    }
 
 }
