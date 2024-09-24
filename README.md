@@ -45,7 +45,7 @@ Adds utilities (well, just one for now...) to using the Fraction and FractionUni
 
 ### Usage
 ```cs
-var fraction = FractionFactory.Create(0.1484354748);
+var fraction = FractionUtility.Create(0.1484354748);
 Console.WriteLine(fraction);	// { 742177 / 5000000 }
 ```
 

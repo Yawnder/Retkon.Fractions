@@ -5,7 +5,7 @@ using Retkon.Fractions.Units;
 namespace Retkon.Fractions.Tools.Tests;
 
 [TestClass]
-public class FractionUnitFactoryTest
+public class FractionUnitUtility_Create
 {
     private const float tolerance = 0.000_000_01f;
 
@@ -17,7 +17,7 @@ public class FractionUnitFactoryTest
         // Act
         try
         {
-            var result = FractionUnitFactory.Create((float)0.000_0004 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
+            var result = FractionUnitUtility.Create((float)0.000_0004 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
             // Assert
             Assert.Fail("Shouldn't reach here.");
         }
@@ -32,7 +32,7 @@ public class FractionUnitFactoryTest
         // Act
         try
         {
-            var result = FractionUnitFactory.Create((float)-0.000_0004 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
+            var result = FractionUnitUtility.Create((float)-0.000_0004 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
             // Assert
             Assert.Fail("Shouldn't reach here.");
         }
@@ -46,7 +46,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(34, 8_347_577_871_347_577_871), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)34 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)34 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -59,7 +59,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-34, 8_347_577_871_347_577_871), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-34 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-34 / (float)8_347_577_871_347_577_871, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -72,7 +72,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(34, 871_347_577), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)34 / (float)871_347_577, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)34 / (float)871_347_577, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -85,7 +85,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-34, 871_347_577), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-34 / (float)871_347_577, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-34 / (float)871_347_577, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -98,7 +98,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(34, 871), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)34 / (float)871, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)34 / (float)871, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -111,7 +111,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-34, 871), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-34 / (float)871, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-34 / (float)871, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -124,7 +124,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(0, 1), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)0, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)0, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -137,7 +137,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(871_347_577, 34), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)871_347_577 / (float)34, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)871_347_577 / (float)34, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -150,7 +150,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-871_347_577, 34), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-871_347_577 / (float)34, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-871_347_577 / (float)34, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -163,7 +163,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(871_347_577_643_342, 33), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)871_347_577_643_342 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)871_347_577_643_342 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -176,7 +176,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-871_347_577_643_342, 33), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-871_347_577_643_342 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-871_347_577_643_342 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -189,7 +189,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(8_347_577_871_347_577_871, 33), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)8_347_577_871_347_577_871 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)8_347_577_871_347_577_871 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -202,7 +202,7 @@ public class FractionUnitFactoryTest
         var expectedResult = new FractionUnit(new Fraction(-8_347_577_871_347_577_871, 33), new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Act
-        var result = FractionUnitFactory.Create((float)-8_347_577_871_347_577_871 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
+        var result = FractionUnitUtility.Create((float)-8_347_577_871_347_577_871 / (float)33, new Dictionary<string, short> { { "Tomato", 2 } });
 
         // Assert
         Assert.AreEqual((float)expectedResult, (float)result, tolerance);
@@ -216,7 +216,7 @@ public class FractionUnitFactoryTest
         // Act
         try
         {
-            var result = FractionUnitFactory.Create((float)8_347_577_871_347_577_871 / (float)0.000_000_000_000_000_4, new Dictionary<string, short> { { "Tomato", 2 } });
+            var result = FractionUnitUtility.Create((float)8_347_577_871_347_577_871 / (float)0.000_000_000_000_000_4, new Dictionary<string, short> { { "Tomato", 2 } });
             // Assert
             Assert.Fail("Shouldn't reach here.");
         }
@@ -231,7 +231,7 @@ public class FractionUnitFactoryTest
         // Act
         try
         {
-            var result = FractionUnitFactory.Create((float)-8_347_577_871_347_577_871 / (float)0.000_0004, new Dictionary<string, short> { { "Tomato", 2 } });
+            var result = FractionUnitUtility.Create((float)-8_347_577_871_347_577_871 / (float)0.000_0004, new Dictionary<string, short> { { "Tomato", 2 } });
             // Assert
             Assert.Fail("Shouldn't reach here.");
         }

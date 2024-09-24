@@ -2,7 +2,7 @@
 
 namespace Retkon.Fractions.Tools;
 
-public static class FractionFactory
+public static class FractionUtility
 {
 
     private const int maximumLength = 18;
