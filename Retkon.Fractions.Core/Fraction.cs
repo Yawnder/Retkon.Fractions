@@ -28,37 +28,11 @@ public readonly struct Fraction
 
         if (reduce)
         {
-            if (numerator % denominator == 0)
-            {
-                this.Numerator = numerator / denominator;
-                this.Denominator = 1;
-            }
-            else if (denominator % numerator == 0)
-            {
-                this.Numerator = 1;
-                this.Denominator = denominator / numerator;
-            }
-            else
-            {
-                var largestCommon = 1L;
-                for (long i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
-                {
-                    if (numerator % i == 0 && denominator % i == 0)
-                    {
-                        largestCommon = i;
-                        break;
-                    }
-                }
+            (numerator, denominator) = ReduceCore(numerator, denominator);
+        }
 
-                this.Numerator = numerator / largestCommon;
-                this.Denominator = denominator / largestCommon;
-            }
-        }
-        else
-        {
-            this.Numerator = numerator;
-            this.Denominator = denominator;
-        }
+        this.Numerator = numerator;
+        this.Denominator = denominator;
     }
 
     public static Fraction operator +(Fraction a)
@@ -113,35 +87,39 @@ public readonly struct Fraction
 
     public Fraction Reduce()
     {
-        if (this.Numerator == this.Denominator)
+        var (numerator, denominator) = ReduceCore(this.Numerator, this.Denominator);
+        return new Fraction(numerator, denominator, false);
+    }
+
+    private static (long numerator, long denominator) ReduceCore(long numerator, long denominator)
+    {
+        if (numerator % denominator == 0)
         {
-            return Fraction.One;
+            numerator = numerator / denominator;
+            denominator = 1;
         }
-        else if (this.Numerator % this.Denominator == 0)
+        else if (denominator % numerator == 0)
         {
-            return new Fraction(this.Numerator / this.Denominator, 1);
-        }
-        else if (this.Denominator % this.Numerator == 0)
-        {
-            return new Fraction(1, this.Denominator / this.Numerator);
+            denominator = denominator / numerator;
+            numerator = 1;
         }
         else
         {
             var largestCommon = 1L;
-            for (long i = (long)Math.Sqrt(Math.Min(Math.Abs(this.Numerator), Math.Abs(this.Denominator))) - 1; i > 0; i--)
+            for (long i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
             {
-                if (this.Numerator % i == 0 && this.Denominator % i == 0)
+                if (numerator % i == 0 && denominator % i == 0)
                 {
                     largestCommon = i;
                     break;
                 }
             }
 
-            if (largestCommon > 1)
-                return new Fraction(this.Numerator / largestCommon, this.Denominator / largestCommon);
-            else
-                return this;
+            numerator = numerator / largestCommon;
+            denominator = denominator / largestCommon;
         }
+
+        return (numerator, denominator);
     }
 
     public override string ToString()
