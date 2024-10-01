@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Retkon.Fractions.Tools;
 
@@ -64,6 +65,33 @@ public static class FractionUtility
             }).ToList();
 
         return result;
+    }
+
+    public static Fraction Round(Fraction fraction, Fraction increment, MidpointRounding midpointRounding = MidpointRounding.ToEven)
+    {
+        return RoundCore(fraction, increment, e => (long)Math.Round(e, midpointRounding));
+    }
+
+    public static Fraction Floor(Fraction fraction, Fraction increment)
+    {
+        return RoundCore(fraction, increment, e => (long)Math.Floor(e));
+    }
+
+    public static Fraction Ceiling(Fraction fraction, Fraction increment)
+    {
+        return RoundCore(fraction, increment, e => (long)Math.Ceiling(e));
+    }
+
+    private static Fraction RoundCore(Fraction fraction, Fraction increment, Func<decimal, long> roundingOperation)
+    {
+        if (increment == Fraction.Zero)
+            throw new ArgumentException("Can't use zero increments.");
+
+        var valueFraction = (decimal)fraction.Numerator / (decimal)fraction.Denominator;
+        var valueIncrement = (decimal)increment.Numerator / (decimal)increment.Denominator;
+        var value = roundingOperation(valueFraction / valueIncrement);
+
+        return new Fraction(increment.Numerator * value, increment.Denominator);
     }
 
 }

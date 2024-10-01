@@ -14,7 +14,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Authors>Yawnder</Authors>
     <Company>Retkon</Company>
-    <Version>0.9.3-beta</Version>
+    <Version>0.9.4-beta</Version>
     <RepositoryUrl>https://github.com/Yawnder/Retkon.Fractions</RepositoryUrl>
   </PropertyGroup>
 

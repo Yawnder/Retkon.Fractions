@@ -58,6 +58,13 @@ var result = FractionUtility.SameBase(new Fraction(2, 36), new Fraction(1, 18), 
 /// 5/90, 5/90, -54/90
 ```
 
+#### Round/Ceiling/Floor
+Express the Fraction in term of the provided increments only, by using Round/Ceiling/Floor logic.
+```cs
+var fraction = FractionUtility.Round(new Fraction(5, 2), new Fraction(3, 11));
+Console.WriteLine(fraction);	// { 27 / 11 }
+```
+
 ### FractionUnitUtility
 #### Create
 Creates a fraction approximation of a float, and applies the unit in one step.
