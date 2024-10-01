@@ -157,9 +157,9 @@ public class FractionUnit<T> where T : notnull
         return new FractionUnit<T>(value, []);
     }
 
-    public static implicit operator float(FractionUnit<T> value)
+    public static implicit operator decimal(FractionUnit<T> value)
     {
-        return (float)value.Numerator / (float)value.Denominator;
+        return (decimal)value.Numerator / (decimal)value.Denominator;
     }
 
 }

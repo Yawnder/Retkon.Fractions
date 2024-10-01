@@ -45,7 +45,7 @@ Adds utilities to using the Fraction and FractionUnit classes.
 
 ### FractionUtility
 #### Create
-Creates a fraction approximation of a float.
+Creates a fraction approximation of a decimal.
 ```cs
 var fraction = FractionUtility.Create(0.1484354748);
 Console.WriteLine(fraction);	// { 742177 / 5000000 }
@@ -60,7 +60,7 @@ var result = FractionUtility.SameBase(new Fraction(2, 36), new Fraction(1, 18), 
 
 ### FractionUnitUtility
 #### Create
-Creates a fraction approximation of a float, and applies the unit in one step.
+Creates a fraction approximation of a decimal, and applies the unit in one step.
 ```cs
 var fraction = FractionUnitFactory.Create(0.1484354748, new Dictionary<string, short> { { "s", 1 } });
 Console.WriteLine(fraction);	// { 742177 / 5000000, Units: s }

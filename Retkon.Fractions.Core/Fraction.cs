@@ -28,37 +28,11 @@ public readonly struct Fraction
 
         if (reduce)
         {
-            if (numerator % denominator == 0)
-            {
-                this.Numerator = numerator / denominator;
-                this.Denominator = 1;
-            }
-            else if (denominator % numerator == 0)
-            {
-                this.Numerator = 1;
-                this.Denominator = denominator / numerator;
-            }
-            else
-            {
-                var largestCommon = 1L;
-                for (long i = Math.Min(Math.Abs(numerator), Math.Abs(denominator)) - 1; i > 0; i--)
-                {
-                    if (numerator % i == 0 && denominator % i == 0)
-                    {
-                        largestCommon = i;
-                        break;
-                    }
-                }
+            (numerator, denominator) = ReduceCore(numerator, denominator);
+        }
 
-                this.Numerator = numerator / largestCommon;
-                this.Denominator = denominator / largestCommon;
-            }
-        }
-        else
-        {
-            this.Numerator = numerator;
-            this.Denominator = denominator;
-        }
+        this.Numerator = numerator;
+        this.Denominator = denominator;
     }
 
     public static Fraction operator +(Fraction a)
@@ -113,34 +87,54 @@ public readonly struct Fraction
 
     public Fraction Reduce()
     {
-        if (this.Numerator == this.Denominator)
+        var (numerator, denominator) = ReduceCore(this.Numerator, this.Denominator);
+        return new Fraction(numerator, denominator);
+    }
+
+    private static (long, long) ReduceCore(long numerator, long denominator)
+    {
+        var isNegativeMultiplier = (numerator < 0) != (denominator < 0) ? -1 : 1;
+        numerator = Math.Abs(numerator);
+        denominator = Math.Abs(denominator);
+
+        if (numerator == denominator)
         {
-            return Fraction.One;
+            return (isNegativeMultiplier, 0);
         }
-        else if (this.Numerator % this.Denominator == 0)
+        else if (numerator % denominator == 0)
         {
-            return new Fraction(this.Numerator / this.Denominator, 1);
+            return (numerator / denominator * isNegativeMultiplier, 1);
         }
-        else if (this.Denominator % this.Numerator == 0)
+        else if (denominator % numerator == 0)
         {
-            return new Fraction(1, this.Denominator / this.Numerator);
+            return (isNegativeMultiplier, denominator / numerator);
         }
         else
         {
             var largestCommon = 1L;
-            for (long i = (long)Math.Sqrt(Math.Min(Math.Abs(this.Numerator), Math.Abs(this.Denominator))) - 1; i > 0; i--)
+
+            while (true)
             {
-                if (this.Numerator % i == 0 && this.Denominator % i == 0)
+                var hasValue = false;
+                var maxi = Math.Ceiling(Math.Min(Math.Sqrt(numerator), Math.Sqrt(denominator)));
+                for (int i = 2; i <= maxi; i++)
                 {
-                    largestCommon = i;
-                    break;
+                    if (numerator % i == 0 && denominator % i == 0)
+                    {
+                        numerator /= i;
+                        denominator /= i;
+                        largestCommon *= i;
+                        hasValue = true;
+                        break;
+                    }
                 }
+                if (hasValue)
+                    continue;
+
+                break;
             }
 
-            if (largestCommon > 1)
-                return new Fraction(this.Numerator / largestCommon, this.Denominator / largestCommon);
-            else
-                return this;
+            return (numerator / largestCommon * isNegativeMultiplier, denominator / largestCommon);
         }
     }
 
@@ -154,9 +148,9 @@ public readonly struct Fraction
         return new Fraction(value, 1);
     }
 
-    public static implicit operator float(Fraction value)
+    public static implicit operator decimal(Fraction value)
     {
-        return (float)value.Numerator / (float)value.Denominator;
+        return (decimal)value.Numerator / (decimal)value.Denominator;
     }
 
 }
