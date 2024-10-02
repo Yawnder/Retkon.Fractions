@@ -50,6 +50,8 @@ Creates a fraction approximation of a float.
 var fraction = FractionUtility.Create(0.1484354748);
 Console.WriteLine(fraction);	// { 742177 / 5000000 }
 ```
+Note: The `AfterCreateDefaultTransformation` static property on `FractionUtility` applies after a Fraction is approximated, but before it returned. It's typically used for automatically rounding Approximated fractions.
+
 #### SameBase
 Finds the Least Common Denominator (LCD) of all fractions, and returns them all with that Denominator.
 ```cs

@@ -8,6 +8,8 @@ public static class FractionUtility
 
     private const int maximumLength = 18;
 
+    public static Func<Fraction, Fraction>? AfterCreateDefaultTransformation { get; set; }
+
     public static Fraction Create(float value)
     {
         if (value == 0)
@@ -46,7 +48,13 @@ public static class FractionUtility
 
         value *= isNegative ? -1 : 1;
 
-        return new Fraction((long)value, denominator);
+        var newFraction = new Fraction((long)value, denominator);
+        if (AfterCreateDefaultTransformation != null)
+        {
+            newFraction = AfterCreateDefaultTransformation(newFraction);
+        }
+
+        return newFraction;
     }
 
     public static List<Fraction> SameBase(params Fraction[] fractions)
