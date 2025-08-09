@@ -173,4 +173,18 @@ public class FractionUtility_Ceiling
         // Assert
         Assert.AreEqual(expectedResult, result);
     }
+
+    [TestMethod]
+    public void FractionFactory_Ceiling_OneTwoForthieth_OneSixteenth()
+    {
+        // Arrange
+        var expectedResult = new Fraction(1, 16);
+        var input = FractionUtility.Create(new Fraction(1, 240));
+
+        // Act
+        var result = FractionUtility.Ceiling(input, new Fraction(1, 16));
+
+        // Assert
+        Assert.AreEqual(expectedResult, result);
+    }
 }
